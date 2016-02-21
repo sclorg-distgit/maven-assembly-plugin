@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.4
-Release:        8.10%{?dist}
+Release:        8.11%{?dist}
 Summary:        Maven Assembly Plugin
 License:        ASL 2.0
 URL:            http://maven.apache.org/plugins/maven-assembly-plugin/
@@ -12,25 +12,25 @@ Source0:        http://repo2.maven.org/maven2/org/apache/maven/plugins/%{pkg_nam
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
-BuildRequires:  maven30-mvn(org.apache.maven.plugins:maven-plugins:pom:)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:file-management)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-common-artifact-filters)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-filtering)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-repository-builder)
-BuildRequires:  maven30-mvn(org.apache.maven.shared:maven-shared-io)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-archiver)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-artifact)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-core)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-model)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-plugin-api)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-project)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-archiver)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-component-annotations)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-container-default)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-interpolation)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-io)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-utils)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugin-tools:maven-plugin-annotations)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-plugins:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:file-management)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-common-artifact-filters)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-filtering)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-repository-builder)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.shared:maven-shared-io)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-archiver)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-artifact)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-core)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-model)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-plugin-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-project)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-archiver)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-component-annotations)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-container-default)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-interpolation)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-io)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
 
 
 %description
@@ -47,7 +47,7 @@ This package provides %{summary}.
 %setup -q -n %{pkg_name}-%{version}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # Tests need easymockclassextension version 2.x, which is incompatible
 # with easymockclassextension version 3.x we have in Fedora.
@@ -55,7 +55,7 @@ set -e -x
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -69,6 +69,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.4-8.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.4-8.10
 - maven33 rebuild
 
